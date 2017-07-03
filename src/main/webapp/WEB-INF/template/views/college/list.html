@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title>线上学习</title>
+    ${(widget.get("widgets/meta.html"))!}
+    <link rel="stylesheet" href="//s1.zzhstatic.com/JXplat/dist/css/conf/study-index.css?v=${staticVersion}" type="text/css" charset="utf-8">
+    <style>
+    	.course-wrap .mod-free-course .mod-course .play-icon{lien-height:78px;}
+    	.mod-tab-play{
+    		margin-top:18px;
+    	}
+    	.mod-tab-play a{
+    		padding: 3px 10px;
+    		margin-right: 10px;
+    		border:1px solid #eee;
+    	}
+    	.mod-tab-play a.active{
+    		background: #fe5654;
+    		color: #fff;
+    		border-color:#fe5654;
+    		
+    	}
+    </style>
+    <script type="text/javascript">
+        // 登录页面的路径
+        $PAGE_DATA['loadUrl']="${basePath!}/course/queryCourseList"
+        $PAGE_DATA['domId']="courseList";
+    </script>
+</head>
+
+<body>
+    <!-- 我是注释 -->
+    ${(widget.get("widgets/header.html"))!}
+       <div class="wrap course-wrap">
+           <div class="mod-free-course">
+               <div class="nav clearfix">
+                    <span class="f-l">免费好课</span>
+                    <ul class="f-l clearfix" id="categoryIds">
+                    <li class="active"> 
+	                	<a href="javascript:;" >全部</a>
+	                </li>
+                    <#if clientCategoryInfos??>
+                    	<#list clientCategoryInfos as clientCategoryInfo>
+                    		<li> 
+	                           <a href="javascript:;" value="${(clientCategoryInfo.id)!}">${(clientCategoryInfo.name)!}</a>
+	                       	</li>
+                    	</#list>
+                    </#if>
+                    </ul>
+                    <div class="mod-tab-play f-r" id="courseType">
+                    	<a href="javascript:;" class="active">全部</a>
+                    	<a href="javascript:;" value="1">直播</a>
+                    	<a href="javascript:;" value="2">点播</a>
+                    </div>
+                </div>
+
+                <div class="mod-course">
+                    <ul class="clearfix" id="courseList">
+                    
+                    </ul>
+
+                </div>
+                
+                <!--分页begin-->
+                <div class="mod-page clearfix">
+                    <div class="f-r" id="jPagination"></div>
+                </div>
+                <!--分页end-->
+                
+           </div>
+       </div>
+	<input type="hidden" value="${(courseName)!}" id="courseName"/>
+    ${(widget.get("widgets/footer.html"))!}
+    ${(widget.get("widgets/js.html"))!}
+    <script type="text/javascript">
+    require(['conf/study-list'], function() {
+    });
+    </script>
+<!-- 资讯列表模板 -->
+    <script id="jWrap" type="text/html">
+	{{each resultList as value i}}
+	<li>
+    	<a href="/course/toCourseDetail?courseId={{value.id}}" class="mod-video">
+    		<img src="{{value.coverImageUrl}}"/>
+    		<h2>{{value.name}}</h2>
+    		<span class="play-icon"><i class="iyoyo icon-video"></i></span>
+    	</a>
+    		<div class="clearfix course-info">
+    		<span class="f-l"><i class="iyoyo icon-time"></i>时长：{{value.duration}}分钟</span>
+    		<span class="f-r"><i class="iyoyo icon-man"></i>{{value.studyCounter}}</span>
+    	</div>
+    </li>
+	{{/each}}
+    </script>
+</body>
+
+</html>

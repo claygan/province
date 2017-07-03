@@ -1,0 +1,7 @@
+<ul class="acti-list">
+     <#list policyNewsItems as policyNewsItem>
+     	<li>
+    		<a href="/policy/toPolicyDetail?policyId=${(policyNewsItem.id)!}" target="_blank">${(policyNewsItem.title)!}</a>
+		</li>
+     </#list>
+</ul>

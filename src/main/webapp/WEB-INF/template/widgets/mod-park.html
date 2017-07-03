@@ -1,0 +1,15 @@
+
+<ul class="clearfix">
+	<#list parkItems as parkItem>
+		<li>
+        <a href="/park/detail?id=${(parkItem.id)!}" target="_blank">
+            <img src="${(parkItem.imgUrl[0])!}"/>
+            <h2>${(parkItem.name)!}</h2>
+        </a>
+        <div class="organize-detail">
+            <p><i class="iyoyo icon-range"></i>${(parkItem.area)!}</p>
+            <p><i class="iyoyo icon-storage"></i>${(parkItem.buildingType)!}</p>
+        </div>
+    </li>
+	</#list>
+</ul>

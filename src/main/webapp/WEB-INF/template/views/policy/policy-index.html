@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>电商政策</title>
+    <!--#include file="./common/meta.html"-->
+    <!--#include file="./common/css.html"-->
+    ${(widget.get("widgets/meta.html"))!}
+    <link rel="stylesheet" href="//s1.zzhstatic.com/JXplat/dist/css/conf/policy.css?v=${staticVersion}" type="text/css" charset="utf-8">
+    <script type="text/javascript">
+    	var $PAGE_DATA=window.$PAGE_DATA||{startTime:new Date};
+        $PAGE_DATA['loadUrl']="${basePath!}/policy/queryNews"
+        $PAGE_DATA['domId']="policyList";
+    </script>
+</head>
+
+<body>
+    <!-- 我是注释 -->
+    <!--#include file="./common/header.html"-->
+     ${(widget.get("widgets/header.html"))!}
+    <div class="wrap clearfix">
+        <div class="mod-container f-l">
+            <div class="mod-sub-info clearfix">
+                <div class="mod-area clearfix f-l" id="categoryIds">
+                	<span value="0">全部</span>
+                	<#list newsCategoryItems as newsCategoryItem>
+                		<span value="${(newsCategoryItem.id)!}">${(newsCategoryItem.name)!}</span>
+                	</#list>
+<!--                     <span class="active">国家政策</span> -->
+<!--                     <span>地方政策</span> -->
+                </div>
+               <div class="search f-r" id="jTopSearch">
+                    <input class="txt" id="topSearchBar" node-type="ipt" type="text" data-id="name" value="${(keyWord)!}" placeholder="请输入搜索内容..." />
+                    <button id="jSearch" node-type="btn" class="iyoyo icon-search"></button>
+                </div>
+            </div>
+
+            <div class="info-list">
+                <ul id="policyList">
+                	<!-- 加载政策模块 -->
+                </ul>
+            </div>
+
+                <!--分页begin-->
+                <div class="mod-page clearfix">
+                    <div class="f-r" id="jPagination"></div>
+                </div>
+                <!--分页end-->
+        </div>
+        <!-- 右侧广告栏 -->
+        <div class="mod-right f-r">
+        <!-- 电商活动 -->
+        <!-- 热点资讯 -->
+            <div class="mod-policy ">
+                <h2 class="mod-common-title">热点资讯</h2>
+                 ${(widget.get("widgets/mod-hot-news.html"))!}
+            </div>
+            <!-- 电商活动 -->
+            <div class="mod-activity mt-40">
+                <h2 class="mod-common-title ml-20">电商活动</h2>
+                ${(widget.get("widgets/mod-activity.html"))!}
+            </div>
+        </div>
+    </div>
+
+    ${(widget.get("widgets/footer.html"))!}
+    ${(widget.get("widgets/js.html"))!}
+    <script type="text/javascript">
+    require(['conf/policy-index'], function() {
+       
+    });
+    </script>
+<!-- 政策列表模板 -->
+    <script id="jWrap" type="text/html">
+	{{each resultList as value i}}
+	<li>
+    	<a href="/policy/toPolicyDetail?policyId={{value.id}}" target="_blank" class="info-title">{{value.title}}</a>
+    	<div >
+    		<div class="mod-info-detail">
+    			<p>{{value.summary}}</p>
+    			<span>{{value.createTime}}</span>
+    		</div>
+    	</div>
+    </li>
+	{{/each}}
+    </script>
+</body>
+
+</html>

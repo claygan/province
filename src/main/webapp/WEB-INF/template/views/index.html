@@ -1,0 +1,267 @@
+  <!DOCTYPE html>
+<html>
+<head>
+    <title>首页</title>
+    ${(widget.get("widgets/meta.html"))!}
+    <link rel="stylesheet" href="//s1.zzhstatic.com/JXplat/dist/css/conf/index.css" type="text/css" charset="utf-8">
+    <script type="text/javascript">
+        //首页资讯模块加载
+        $PAGE_DATA['newsUrl1'] = "/queryIndexNews?showModel=1";
+        $PAGE_DATA['newsDomId1'] = "jNewsModelDom1";
+        $PAGE_DATA['newsUrl2'] = "/queryIndexNews?showModel=2";
+        $PAGE_DATA['newsDomId2'] = "jNewsModelDom2";
+        $PAGE_DATA['newsUrl3'] = "/queryIndexNews?showModel=3";
+        $PAGE_DATA['newsDomId3'] = "jNewsModelDom3";
+      	//首页课程模块加载
+        $PAGE_DATA['courseVideoUrl'] = "/queryIndexCourse?type=video";
+        $PAGE_DATA['courseLiveUrl'] = "/queryIndexCourse?type=live";
+        $PAGE_DATA['courseDomId'] = "jCourseDom";
+      	//首页服务产品模块加载
+        $PAGE_DATA['productUrl'] = "/queryIndexProduct";
+        $PAGE_DATA['productDomId'] = "jProductDom";
+        //活动沙龙日历模块加载
+        $PAGE_DATA['indexCalendarUrl'] = "/queryIndexCalendar";
+    </script>
+    <style type="text/css">
+    .ui-layer{
+        width:360px;
+    }
+    </style>
+</head>
+
+<body>
+    <!-- 我是注释 -->
+    ${(widget.get("widgets/header.html"))!}
+    <!-- 轮播区域 -->
+     <div class="mod-slider">
+            <div class="jImgBlur"></div>
+            <div class="ui-slider wrap" id="jSlider">
+                <ul class="slider-list">
+                    <#list indexCarousels! as carousel>
+	                    <li class="slider-item" data-img="${(carousel.imgUrl)!}">
+	                        <div class="slider-click">
+	                            <a target="${(carousel.link)!}" href="${(carousel.link)!}" title="${(carousel.title)!}"></a>
+	                            <p>${(carousel.title)!}</p>
+	                        </div>
+	                    </li>
+                    </#list>
+                </ul>
+                <div class="hot-news">
+                    <h1>最新资讯</h1>
+                    <ul>
+                        <#list newNewsItems! as news>
+                        	<#if news_index == 0>
+                        		<li class="active"><a href="${basePath!}/profession/toProfessionDetail?professionId=${news.id}" target="_blank">${(news.title)!}</a></li>
+                        	<#else>
+                        		<li><a href="${basePath!}/profession/toProfessionDetail?professionId=${news.id}" target="_blank">${(news.title)!}</a></li>
+                        	</#if>
+                        </#list>
+                    </ul>
+                </div>
+                <div class="slider-num">
+                    <#list indexCarousels! as carousel>
+                		<#if carousel_index == 0>
+                    		<a class="hover" href="javascript:void(0)"></a>
+                    	<#else>
+                    		<a href="javascript:void(0)"></a>
+                    	</#if>
+                    </#list>
+                </div>
+            </div>
+        </div>
+    </div>
+   <!-- 轮播区域end -->
+
+<div class="wrap">
+        <!-- 行业观点（电商动态） -->
+    <div class="clearfix">
+        <div class="mod-container f-l">
+            <div class="mod-view-wrap">
+                  <h2 class="mod-level-header"><i class="iyoyo icon-dongtaizixun"></i><span>行业观点</span></h2>
+                  <div class="mod-views" id="jNewsModelDom1">
+                        <!-- 模板加载区 -->
+                  </div>
+            </div>
+        </div>
+        <div class="mod-right-bar f-r mt-50">
+        <!-- 线上学习 -->
+            <h2 class="mod-level-header"><i class="iyoyo  icon-xuexi"></i><span>线上学习</span></h2>
+            <ul class="mod-study-tab clearfix jTab" id="jTurn">
+                <li class="active"><i class="iyoyo icon-lives"></i><span>在线直播</span></li>
+                <li><i class="iyoyo icon-dianbo"></i><span>往期精品</span></li>
+            </ul>
+            <div class="mod-activity" id="jCourseDom">
+            	<!-- 加载课程模板区 -->
+            </div>
+        </div>
+    </div>
+     <!-- 行业观点end -->
+    
+        <!-- 广告位 -->
+        <div class="clearfix mb-20">
+             <div class="Ad-position f-l"><a href="${(adImages1.link)!}" target="${(adImages1.openMode)!}"><img data-src="${(adImages1.imgUrl)!}" class="jImg"></a></div>
+              <!-- 广告位SM  -->
+            <div class="Ad-position-sm f-r"><a href="${(adImages2.link)!}" target="${(adImages2.openMode)!}"><img data-src="${(adImages2.imgUrl)!}" class="jImg"></a></div>
+        </div>
+        <!-- 广告位end -->
+
+       <!--  数据方向 -->
+       <div class="clearfix">
+        <div class="mod-container f-l">
+            <div class="mod-data-wrap">
+                <h2 class="mod-level-header"><i class="iyoyo icon-shuju"></i><span>数据方向</span></h2>
+                <div class="mod-views" id="jNewsModelDom2">
+                        <!-- 模板加载区 -->
+                </div>
+            </div>
+        </div>
+         <div class="mod-right-bar f-r">
+                ${(widget.get("widgets/mod-expert.html"))!}
+         </div>
+        <!--  数据报告end -->
+        </div>
+
+         <!-- 广告位 -->
+        <div class="clearfix mb-20">
+            <div class="Ad-position f-l"><a href="${(adImages3.link)!}" target="${(adImages3.openMode)!}"><img data-src="${(adImages3.imgUrl)!}" class="jImg"></a></div>
+            <div class="Ad-position-sm f-r"><a href="${(adImages4.link)!}" target="${(adImages4.openMode)!}"><img data-src="${(adImages4.imgUrl)!}" class="jImg"></a></div>
+        </div>
+        <!-- 广告位end -->
+
+
+        <!-- 农村电商 -->
+        <div class="clearfix">
+        <div class="mod-container f-l">
+            <div class="mod-data-wrap">
+                <h2 class="mod-level-header"><i class="iyoyo icon-nongyenongcun"></i><span>农村电商</span></h2>
+                <div class="mod-views" id="jNewsModelDom3">
+                        <!-- 模板加载区 -->
+                </div>
+            </div>
+
+        </div>
+        <div class="mod-right-bar f-r">
+        <!-- 配套服务 -->
+            <h2 class="mod-level-header"><i class="iyoyo icon-rocket"></i><span>配套服务</span></h2>
+             <div class="mod-service">
+                 <ul id="jProductDom">
+                     <!-- 配套服务模块加载 -->
+                 </ul>
+             </div>
+        </div>
+        <!-- 农村电商end -->
+    </div>
+
+        <!-- 活动沙龙 -->
+         <h2 class="mod-level-header"><i class="iyoyo icon-huodong1"></i><span>活动沙龙</span></h2>
+         <div class="role-content clearfix">
+	        <div class="f-l clearfix mod-activitys">
+	            <div class="role-left school  f-l">
+	            	<#list activityItems as activity>
+	            		<#if activity_index == 0>
+			                <a class="trendnew" href="/activity/activityDetail.htm?id=${(activity.id)!}" target="_blank">
+			                    <img class="jImg" data-src="${(activity.coverImageUrl)!}" alt="${(activity.name)!}">     
+			                    <p class="textover">${(activity.name)!}</p>
+			                </a>
+		                <#elseif activity_index == 1>
+			                <a class="f-l" href="/activity/activityDetail.htm?id=${(activity.id)!}" target="_blank">
+			                    <img class="jImg" data-src="${(activity.coverImageUrl)!}" alt="${(activity.name)!}">
+			                    <p class="textover">${(activity.name)!}</p>
+			                </a>
+			            <#elseif activity_index == 2>
+			                <a class="f-r" href="/activity/activityDetail.htm?id=${(activity.id)!}" target="_blank">
+			                    <img class="jImg" data-src="${(activity.coverImageUrl)!}" alt="${(activity.name)!}">
+			                    <p class="textover">${(activity.name)!}</p>
+			                </a> 
+		                </#if> 
+	                </#list> 
+	            </div>  
+	            <div class="f-l role-middle clearfix">
+	            	<#list activityItems as activity>
+	            		<#if activity_index gt 2>
+			               <a class="f-l" href="/activity/activityDetail.htm?id=${(activity.id)!}" target="_blank">
+			                   <img class="jImg" data-src="${(activity.coverImageUrl)!}" alt="${(activity.name)!}">
+			                   <p class="textover">${(activity.name)!}</p>
+			               </a>
+		               </#if>
+	               </#list>
+	           </div>  
+	        </div>
+	        <!-- 日历 -->
+	        <div class="role-righ f-r">
+	            <div id="calendar" class="calendar"></div>
+	        </div>
+        </div>
+</div>
+
+    ${(widget.get("widgets/js.html"))!}
+    ${(widget.get("widgets/footer.html"))!}
+    <script type="text/javascript">
+    require(['conf/index'], function() {
+    });
+    </script>
+
+</body>
+<!-- 资讯模板 -->
+<script id="jNewsWrap" type="text/html">
+<ul class="clearfix">
+
+	{{each resultList as value i}}
+		<li class="clearfix">
+			<a href="${basePath!}/profession/toProfessionDetail?professionId={{value.id}}" target="_blank" class="mod-view-img"><img data-src="{{value.imageUrl}}" class="jImg f-l"></a>
+			<div class="f-r mod-view-intr">
+				<a href="${basePath!}/profession/toProfessionDetail?professionId={{value.id}}" target="_blank"><h3>{{value.title}}</h3></a>
+				<p>导读：{{value.summary}}</p>
+				<div class="clearfix">
+					<span class="time-icon f-l"><i class="iyoyo icon-time"></i>{{value.createTime}}</span>
+					<a href="${basePath!}/profession/toProfessionDetail?professionId={{value.id}}" class="f-r" target="_blank"><i class="icon icon-detail"></i>详情</a>
+				</div>
+			</div>
+		</li>
+	{{/each}}
+</ul>
+{{if resultList.length > 0}}
+	<a href="${basePath!}/profession/index" target="_blank"><p class="mod-more">查看更多>></p></a>
+{{/if}}
+</script>
+<!-- 课程模板 -->
+<script id="jCourseWrap" type="text/html">
+	{{each resultList as value i}}
+		{{if i < 4}}
+			<div class="clearfix mb-20">
+				<a href="${basePath!}/course/toCourseDetail?courseId={{value.id}}" class="f-l acti-img" target="_blank">
+					<img src="{{value.coverImageUrl}}" class="jImg">
+					<span class="play-icon"><i class="iyoyo icon-bofang"></i></span>
+				</a>
+				<div class="f-l acti-detail">
+					<a href="${basePath!}/course/toCourseDetail?courseId={{value.id}}" target="_blank"><h1>{{value.name}}</h1></a>
+					<p><span><i class="iyoyo icon-time"></i>{{value.time}}</span></p>
+				</div>
+			</div>
+		{{/if}}
+	{{/each}}
+	<ul class="acti-list">
+		{{each resultList as value i}}
+			{{if i >= 4}}
+				<li>
+					<a href="${basePath!}/course/toCourseDetail?courseId={{value.id}}" target="_blank">{{value.name}}</a>
+				</li>
+			{{/if}}
+		{{/each}}
+	</ul>
+</script>
+<!-- 服务商模板 -->
+<script id="jVendorWrap" type="text/html">
+	{{each resultList as value i}}
+		<li class="clearfix">
+			<a href="/vendor/productDetail?id={{value.id}}" class="f-l service-img" target="_blank"><img src="{{value.imgUrl}}"></a>
+			<div class="f-r service-intr">
+				<h1>{{value.name}}</h1>
+				<p><i class="icon icon-service-1"></i>{{value.description}}</p>
+				<div><i class="icon icon-service-2"></i>{{value.vendorName}}</div>
+			</div>
+		</li>	
+	{{/each}}
+</script>
+</html>
+		
